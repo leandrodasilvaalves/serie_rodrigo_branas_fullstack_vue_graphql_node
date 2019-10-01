@@ -1,0 +1,2 @@
+vue create .
+npm run serve
