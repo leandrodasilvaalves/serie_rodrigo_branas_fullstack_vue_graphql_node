@@ -40,22 +40,22 @@
 
 <script>
 export default {
-  name: "AppItemList",
-  props: ["title", "items"],
-  data(){
-    return{
-      item: ""
-    }
-  },
-  methods:{
-    addItem(item){
-      this.$emit("addItem", item);
-      this.item = "";
-    },
-    deleteItem(item){
-      this.$emit("deleteItem", item);
-    }
-  }
+	name: "AppItemList",
+	props: ["title", "items"],
+	data(){
+		return{
+			item: ""
+		};
+	},
+	methods:{
+		addItem(item){
+			this.$emit("addItem", item);
+			this.item = "";
+		},
+		deleteItem(item){
+			this.$emit("deleteItem", item);
+		}
+	}
 };
 </script>
 

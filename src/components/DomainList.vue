@@ -54,47 +54,47 @@ import "font-awesome/css/font-awesome.css";
 import AppItemList from "./AppItemList";
 
 export default {
-  name: "app",
-  components: {
-    AppItemList
-  },
-  data: () => {
-    return {
-      prefixes: ["Air", "Jet", "Flight"],
-      sufixes: ["Hub", "Station", "Mart"]
-    };
-  },
-  methods: {
-    addPrefix(prefix) {
-      this.prefixes.push(prefix);
-    },
-    deletePrefix(prefix) {
-      this.prefixes.splice(this.prefixes.indexOf(prefix), 1);
-    },
-    addSufix(sufix) {
-      this.sufixes.push(sufix);
-    },
-    deleteSufix(sufix) {
-      this.sufixes.splice(this.sufixes.indexOf(sufix), 1);
-    }
-  },
-  computed: {
-    domains() {
-      const domains = [];
-      for (const prefix of this.prefixes) {
-        for (const sufix of this.sufixes) {
-          const name = prefix + sufix;
-          const url = name.toLowerCase();
-          const checkout = `https://checkout.hostgator.com.br/?a=add&sld=${url}&tld=.com.br`;
-          domains.push({
-            name,
-            checkout
-          });
-        }
-      }
-      return domains;
-    }
-  }
+	name: "app",
+	components: {
+		AppItemList
+	},
+	data: () => {
+		return {
+			prefixes: ["Air", "Jet", "Flight"],
+			sufixes: ["Hub", "Station", "Mart"]
+		};
+	},
+	methods: {
+		addPrefix(prefix) {
+			this.prefixes.push(prefix);
+		},
+		deletePrefix(prefix) {
+			this.prefixes.splice(this.prefixes.indexOf(prefix), 1);
+		},
+		addSufix(sufix) {
+			this.sufixes.push(sufix);
+		},
+		deleteSufix(sufix) {
+			this.sufixes.splice(this.sufixes.indexOf(sufix), 1);
+		}
+	},
+	computed: {
+		domains() {
+			const domains = [];
+			for (const prefix of this.prefixes) {
+				for (const sufix of this.sufixes) {
+					const name = prefix + sufix;
+					const url = name.toLowerCase();
+					const checkout = `https://checkout.hostgator.com.br/?a=add&sld=${url}&tld=.com.br`;
+					domains.push({
+						name,
+						checkout
+					});
+				}
+			}
+			return domains;
+		}
+	}
 };
 </script>
 
