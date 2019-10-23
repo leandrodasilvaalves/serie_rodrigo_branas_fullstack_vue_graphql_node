@@ -51,6 +51,7 @@
 <script>
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
+import axios from 'axios/dist/axios';
 import AppItemList from "./AppItemList";
 
 export default {
@@ -60,8 +61,8 @@ export default {
 	},
 	data: () => {
 		return {
-			prefixes: ["Air", "Jet", "Flight"],
-			sufixes: ["Hub", "Station", "Mart"]
+			prefixes: [],
+			sufixes: []
 		};
 	},
 	methods: {
@@ -94,7 +95,32 @@ export default {
 			}
 			return domains;
 		}
-	}
+  },
+  created(){
+    axios({
+      url:"http://localhost:4000/",
+      method:"post",
+      data:{
+        query: `
+          {
+            prefixes: items (type: "prefix") {
+              id
+              type
+              description
+            }
+
+            sufixes: items (type: "sufix") {
+              description
+            }
+          }        
+        ` 
+      }
+    }).then(response => {
+      const query = response.data;
+      this.prefixes = query.data.prefixes.map(prefix => prefix.description);
+      this.sufixes = query.data.sufixes.map(sufix => sufix.description);
+    });
+  }
 };
 </script>
 
